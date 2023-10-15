@@ -1,5 +1,5 @@
 # metagen
-Utility for generating your sites document metadata.
+Utility for generating document metadata.
 
 ## Installation
 
@@ -7,11 +7,12 @@ Utility for generating your sites document metadata.
 npm i metagen
 ```
 
-## Usage
+## What does it do?
 
 ```js
 const metagen = require('metagen');
-console.log(metagen({
+
+metagen({
   title: 'Eleventy Plugin Meta Generator',
   desc: 'An eleventy shortcode for generating meta tags.',
   url: 'https://tannerdolby.com',
@@ -26,7 +27,7 @@ console.log(metagen({
   js: ['foo.js', 'bar.js:async'],
   inline_css: 'h1 { color: #f06; }',
   inline_js: 'console.log("hello, world.");'
-}));
+});
 ```
 
 which returns array of `<meta>` tags and other document metadata or a minified string:
