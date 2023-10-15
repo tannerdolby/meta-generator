@@ -1,0 +1,22 @@
+{
+  "name": "metagen",
+  "version": "1.0.0",
+  "description": "Utility for generating your sites document metadata.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --colors --verbose"
+  },
+  "keywords": [
+    "meta-tag-generator",
+    "metadata",
+    "social-share"
+  ],
+  "author": "Tanner Dolby",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.5.0"
+  },
+  "dependencies": {
+    "get-tag": "^0.1.9"
+  }
+}
