@@ -1,5 +1,5 @@
 # metagen
-Utility for generating document metadata. Populate the `<head>` of your web pages on the fly. Can be used in a 11ty site, React app, or any place that JavaScript is supported.
+Utility for generating document metadata. Populate the `<head>` of your web pages on the fly. Can be used with Static Site Generators like Eleventy, React apps, or any place that JavaScript is supported.
 
 ## Installation
 
@@ -30,7 +30,7 @@ metagen({
 });
 ```
 
-which returns array of `<meta>` tags and other document metadata or a minified string:
+which returns array of `<meta>` tags and other document metadata:
 
 ```js
 [
