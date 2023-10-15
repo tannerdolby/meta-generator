@@ -1,5 +1,5 @@
 # metagen
-Utility for generating document metadata. Use the utility in your Eleventy site, or in a React app.
+Utility for generating document metadata. Populate the `<head>` of your web pages on the fly. Can be used in a 11ty site, React app, or any place that JavaScript is supported.
 
 ## Installation
 
