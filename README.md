@@ -4,7 +4,7 @@ Utility for generating document metadata. Populate the `<head>` of your web page
 ## Installation
 
 ```
-npm i metagen
+npm i meta-generator
 ```
 
 ## What does it do?
