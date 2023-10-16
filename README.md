@@ -1,10 +1,10 @@
-# metagen
+# meta-generator
 Utility for generating document metadata. Populate the `<head>` of your web pages on the fly. Can be used with Static Site Generators like Eleventy, React apps, or any place that JavaScript is supported.
 
 ## Installation
 
 ```
-npm i meta-generator
+npm install meta-generator
 ```
 
 ## What does it do?
@@ -13,8 +13,8 @@ npm i meta-generator
 const metagen = require('meta-generator');
 
 metagen({
-  title: 'Eleventy Plugin Meta Generator',
-  desc: 'An eleventy shortcode for generating meta tags.',
+  title: 'Metadata Generator',
+  desc: 'A JavaScript utility for generating document metadata.',
   url: 'https://tannerdolby.com',
   img: 'https://tannerdolby.com/images/arch-spiral-large.jpg',
   img_alt: 'Archimedean Spiral',
