@@ -316,8 +316,8 @@ describe('metagen unit tests', () => {
     });
   });
 
-  describe('plugin parameters', () => {
-    it('general params', () => {
+  describe('plugin arguments', () => {
+    it('general', () => {
       expect(metagen({
         title: 'Some title',
         url: 'https://tannerdolby.com',
