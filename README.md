@@ -10,7 +10,7 @@ npm i metagen
 ## What does it do?
 
 ```js
-const metagen = require('@tannerdolby/metagen');
+const metagen = require('meta-generator');
 
 metagen({
   title: 'Eleventy Plugin Meta Generator',
