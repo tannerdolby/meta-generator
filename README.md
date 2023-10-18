@@ -14,7 +14,7 @@ const metagen = require('meta-generator');
 
 metagen({
   title: 'Metadata Generator',
-  desc: 'A JavaScript utility for generating document metadata.',
+  desc: 'Utility for generating document metadata.',
   url: 'https://tannerdolby.com',
   img: 'https://tannerdolby.com/images/arch-spiral-large.jpg',
   img_alt: 'Archimedean Spiral',
