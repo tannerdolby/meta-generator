@@ -12,7 +12,7 @@ npm install meta-generator
 ```js
 const metagen = require('meta-generator');
 
-metagen({
+console.log(metagen({
   title: 'Metadata Generator',
   desc: 'Utility for generating document metadata.',
   url: 'https://tannerdolby.com',
@@ -27,7 +27,7 @@ metagen({
   js: ['foo.js', 'bar.js:async'],
   inline_css: 'h1 { color: #f06; }',
   inline_js: 'console.log("hello, world.");'
-});
+}));
 ```
 
 which returns array of `<meta>` tags and other document metadata:
