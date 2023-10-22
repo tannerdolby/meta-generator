@@ -11,7 +11,7 @@ const {
   formatObjects,
   isValidInput,
   getInvalidArgs,
-} = require('../utils/util');
+} = require('../src/utils/util');
 
 describe('metagen utility functions', () => {
   it('should determine if input is an object', () => {

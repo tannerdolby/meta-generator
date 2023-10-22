@@ -1,4 +1,4 @@
-const metagen = require('../index');
+const metagen = require('../src/index');
 
 describe('metagen unit tests', () => {
   describe('should generate tags', () => {
