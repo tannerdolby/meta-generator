@@ -1,8 +1,17 @@
 const getTag = require('get-tag');
 const { PRE_TAGGED, SUPPORTED_ARGS } = require('./constants');
 
+function isObject(obj) {
+  if (!obj || obj === undefined) return false;
+  return typeof obj === 'object' && obj.constructor === Object;
+}
+
+function isString(str) {
+  return typeof str === 'string';
+}
+
 function twitterHandle(handle) {
-  if (!handle || typeof handle !== 'string') {
+  if (!handle || !isString(handle)) {
     return '';
   }
   return `@${handle}`;
@@ -10,27 +19,18 @@ function twitterHandle(handle) {
 
 function HTMLComment(comment, fallback) {
   if (
-    !comment && !fallback ||
-    !isString(comment) && !isString(fallback)
+    (!comment && !fallback) ||
+    (!isString(comment) && !isString(fallback))
   ) {
     return '';
   }
   return `<!-- ${comment || fallback} -->`;
 }
 
-function isObject(obj) {
-  if (!obj || obj === undefined) return false;
-  return typeof obj === 'object' && obj.constructor === Object;
-}
-
-function isString(str) {
-  return typeof str === 'string'
-}
-
 function getDnsTags(data, rel) {
   if (!data || data === undefined) return '';
 
-  if (typeof data === 'string') {
+  if (isString(data)) {
     return getTag('link', null, {
       rel: rel,
       href: data
@@ -38,7 +38,7 @@ function getDnsTags(data, rel) {
   } else if (Array.isArray(data)) {
     return data
       .map((link) => {
-        if (typeof link === 'string') {
+        if (isString(link)) {
           return getTag('link', null, {
             rel: rel,
             href: link
@@ -82,111 +82,106 @@ function handleAlternateLocales(locales) {
     return '';
   }
   return locales
-    .map((locale) =>
-      getTag('meta', null, {
+    .map((locale) => {
+      return getTag('meta', null, {
         property: 'og:locale:alternate',
         content: locale,
-      }),
-    )
+      });
+    });
 }
 
 function getAttributes(str) {
-  if (!str || typeof str !== 'string') {
+  if (!str || !isString(str)) {
     return '';
   }
 
-  const attributes = str.split(':');
+  const values = str.split(':');
 
-  if (!attributes.length) return '';
-
-  return {
-    content: attributes[0],
-    attributes: attributes.slice(1).join(' ')
+  return !values.length ? '' : {
+    content: values[0],
+    attributes: values.slice(1).join(' ')
   };
 }
 
 function getStaticAssets(tagsObj) {
   if (!isObject(tagsObj)) return [];
+
+  function create(tag, val, key, isInline) {
+    if (isString(val)) {
+      if (!isInline) {
+        return handleString(tag, val);
+      }
+      return getTag(tag, val);
+    }
+    return handleArray(val, tag, key, isInline);
+  }
+
   return Object.entries(tagsObj)
     .filter((tagInfo) => tagInfo[1])
     .map(([tag, val]) => {
       switch (tag) {
         case 'inline_css':
-          if (typeof val === 'string') {
-            return getTag('style', val);
-          } else if (Array.isArray(val)) {
-            const styles = val
-              .map((v) => {
-                if (typeof v === 'string') {
-                  return getTag('style', v);
-                } else if (isObject(v)) {
-                  const { css } = v;
-                  delete v.css;
-                  return getTag('style', css, v);
-                }
-              })
-            return styles;
-          }
+          return create('style', val, 'css', true);
         case 'inline_js':
-          if (typeof val === 'string') {
-            return getTag('script', val);
-          } else if (Array.isArray(val)) {
-            const scripts = val
-              .map((v) => {
-                if (typeof v === 'string') {
-                  return getTag('script', v);
-                } else if (isObject(v)) {
-                  const { js } = v;
-                  delete v.js;
-                  return getTag('script', js, v);
-                }
-              })
-            return scripts;
-          }
+          return create('script', val, 'js', true);
         case 'css':
-          if (typeof val === "string") {
-            const { content, attributes } = getAttributes(val);
-            if (!attributes) {
-              return getTag('link', '', { rel: 'stylesheet', href: content });
-            } else {
-              return `<link rel="stylesheet" href="${content}" ${attributes}>`;
-            }
-          } else if (Array.isArray(val)) {
-            return val
-              .map((v) => {
-                const { content, attributes } = getAttributes(v);
-                if (!attributes) {
-                  return getTag('link', null, {
-                    rel: 'stylesheet',
-                    href: content,
-                  });
-                } else {
-                  return `<link ${attributes} href="${content}">`;
-                }
-              })
-          }
-          break;
+          return create('link', val, null, false);
         case 'js':
-          if (typeof val === 'string') {
-            const { content, attributes } = getAttributes(val);
-            if (!attributes) {
-              return getTag('script', '', { src: content });
-            } else {
-              return `<script src="${content}" ${attributes.trim()}></script>`;
-            }
-          } else if (Array.isArray(val)) {
-            return val
-              .map((v) => {
-                const { content, attributes } = getAttributes(v);
-                if (!attributes) {
-                  return `<script src="${content}"></script>`;
-                } else {
-                  return `<script src="${content}" ${attributes}></script>`;
-                }
-              })
-          }
+          return create('script', val, null, false);
       }
     });
+}
+
+function handleString(tagName, data) {
+  const { content, attributes } = getAttributes(data);
+  let defaultAttributes = {};
+
+  if (tagName === 'script') {
+    defaultAttributes = { src: content };
+  } else if (tagName === 'link') {
+    defaultAttributes = { rel: 'stylesheet', href: content }
+  }
+
+  if (!attributes) {
+    return getTag(tagName, null, defaultAttributes);
+  } else {
+    return getTag(tagName, null, attributes);
+  }
+}
+
+function handleArray(data, tagName, key, isInlineAsset) {
+  if (isInlineAsset) {
+    return data
+      .map((val) => {
+        if (isString(val)) {
+          return getTag(tagName, val);
+        } else if (isObject(val)) {
+          const temp = val[key];
+          delete val[key];
+          return getTag(tagName, temp, val);
+        }
+      })
+  } else {
+    return data
+      .map((val) => {
+        const { content, attributes } = getAttributes(val);
+        const map = {
+          link: {
+            noAttributes: getTag('link', null, { rel: 'stylesheet', href: content }),
+            withAttributes: `<link ${attributes} href="${content}">`
+          },
+          script: {
+            noAttributes: `<script src="${content}"></script>`,
+            withAttributes: `<script src="${content}" ${attributes}></script>`
+          }
+        }
+        if (!attributes) {
+          return map[tagName]['noAttributes'];
+        } else {
+          return map[tagName]['withAttributes'];
+        }
+      })
+  }
 }
 
 function formatObjects(data, ...objects) {
@@ -215,7 +210,13 @@ function formatObjects(data, ...objects) {
 }
 
 function isValidInput(data) {
-  if (data !== undefined && data && isObject(data) && Object.keys(data).length) {
+  if (
+    data !== undefined &&
+    data &&
+    isObject(data) &&
+    Object.keys(data).length &&
+    !getInvalidArgs(Object.keys(data)).length
+  ) {
     return true;
   }
   return false;
