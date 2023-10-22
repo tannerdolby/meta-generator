@@ -17,6 +17,6 @@
     "jest": "^29.5.0"
   },
   "dependencies": {
-    "get-tag": "^0.1.9"
+    "get-tag": "^0.1.10"
   }
 }
