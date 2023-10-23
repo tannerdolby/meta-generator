@@ -191,8 +191,7 @@ function formatObjects(data, ...objects) {
     .map(([tag, value]) => {
       if (PRE_TAGGED.includes(tag)) {
         return value;
-      }
-      if (tag.includes('twitter')) {
+      } else if (tag.includes('twitter')) {
         return getTag('meta', null, {
           [data.twitter_attr_name || 'name']: tag,
           content: value,

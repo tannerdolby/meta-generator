@@ -32,7 +32,10 @@ module.exports = (data) => {
       content: 'IE=edge',
     }),
     'viewport': 'width=device-width, initial-scale=1',
-    'title': data.title && getTag('title', data.title),
+    'title': data.title && [
+      getTag('title', data.title),
+      getTag('meta', null, {name: 'title', content: data.title})
+    ].flat(),
     'dns': handleDnsResolution(data.preconnect, data.dns_prefetch),
     'author': data.name,
     'description': data.desc || data.description,
