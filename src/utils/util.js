@@ -214,8 +214,7 @@ function isValidInput(data) {
     data !== undefined &&
     data &&
     isObject(data) &&
-    Object.keys(data).length &&
-    !getInvalidArgs(Object.keys(data)).length
+    Object.keys(data).length
   ) {
     return true;
   }
