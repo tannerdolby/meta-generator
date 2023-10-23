@@ -21,7 +21,6 @@ module.exports = (data) => {
 
   if (invalidArgs.length) {
     console.error('Unsupported meta-generator arguments: ', invalidArgs.join(', '));
-    return [];
   }
 
   const metadata = {
