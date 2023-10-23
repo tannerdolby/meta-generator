@@ -13,7 +13,7 @@
   ],
   "author": "Tanner Dolby",
   "license": "MIT",
-  "homepage": "https://github.com/tannerdolby/get-tag#readme",
+  "homepage": "https://github.com/tannerdolby/meta-generator#readme",
   "devDependencies": {
     "jest": "^29.5.0"
   },
