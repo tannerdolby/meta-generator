@@ -13,14 +13,14 @@ const {
 
 module.exports = (data) => {
   if (!isValidInput(data)) {
-    console.error('No data was added into the meta generator! Provide an object');
+    console.error('No data was added into the meta-generator! Provide an object with supported arguments');
     return [];
   }
 
   const invalidArgs = getInvalidArgs(Object.keys(data));
 
   if (invalidArgs.length) {
-    console.error('Unrecognized metagen arguments: ', invalidArgs);
+    console.error('Unsupported meta-generator arguments: ', invalidArgs.join(', '));
     return [];
   }
 
