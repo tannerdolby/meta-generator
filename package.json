@@ -1,8 +1,8 @@
 {
   "name": "meta-generator",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "description": "Utility for generating document metadata.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "jest --colors --verbose"
   },
@@ -13,6 +13,7 @@
   ],
   "author": "Tanner Dolby",
   "license": "MIT",
+  "homepage": "https://github.com/tannerdolby/get-tag#readme",
   "devDependencies": {
     "jest": "^29.5.0"
   },
