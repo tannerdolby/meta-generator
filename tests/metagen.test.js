@@ -26,6 +26,7 @@ describe('metagen unit tests', () => {
         '<meta http-equiv="X-UA-Compatible" content="IE=edge">',
         '<meta name="viewport" content="width=device-width, initial-scale=1">',
         '<title>foo</title>',
+        '<meta name="title" content="foo">',
         '<!-- Open Graph -->',
         '<meta property="og:type" content="website">',
         '<meta property="og:locale" content="en_US">',
@@ -60,6 +61,7 @@ describe('metagen unit tests', () => {
         '<meta http-equiv="X-UA-Compatible" content="IE=edge">',
         '<meta name="viewport" content="width=device-width, initial-scale=1">',
         '<title>Eleventy Plugin Add Meta Tags</title>',
+        '<meta name="title" content="Eleventy Plugin Add Meta Tags">',
         '<meta name="author" content="Tanner Dolby">',
         '<meta name="description" content="An eleventy shortcode for generating meta tags.">',
         '<meta property="og:type" content="website">',
@@ -103,6 +105,7 @@ describe('metagen unit tests', () => {
         '<meta http-equiv="X-UA-Compatible" content="IE=edge">',
         '<meta name="viewport" content="width=device-width, initial-scale=1">',
         '<title>Eleventy Plugin Meta Generator</title>',
+        '<meta name="title" content="Eleventy Plugin Meta Generator">',
         '<meta name="author" content="Tanner Dolby">',
         '<meta name="description" content="An eleventy shortcode for generating meta tags.">',
         '<meta name="generator" content="eleventy">',
@@ -148,6 +151,7 @@ describe('metagen unit tests', () => {
         '<meta http-equiv="X-UA-Compatible" content="IE=edge">',
         '<meta name="viewport" content="width=device-width, initial-scale=1">',
         '<title>Eleventy Plugin Add Meta Tags</title>',
+        '<meta name="title" content="Eleventy Plugin Add Meta Tags">',
         '<meta name="author" content="Tanner Dolby">',
         '<meta name="description" content="An eleventy shortcode for generating meta tags.">',
         '<meta property="og:type" content="website">',
@@ -233,6 +237,7 @@ describe('metagen unit tests', () => {
         '<meta http-equiv="X-UA-Compatible" content="IE=edge">',
         '<meta name="viewport" content="width=device-width, initial-scale=1">',
         '<title>Eleventy Plugin Meta Generator</title>',
+        '<meta name="title" content="Eleventy Plugin Meta Generator">',
         '<link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin>',
         '<link rel="preconnect" href="https://google.com">',
         '<link rel="dns-prefetch" href="https://fonts.googleapis.com/">',
@@ -294,6 +299,7 @@ describe('metagen unit tests', () => {
         '<meta http-equiv="X-UA-Compatible" content="IE=edge">',
         '<meta name="viewport" content="width=device-width, initial-scale=1">',
         '<title>Some Title</title>',
+        '<meta name="title" content="Some Title">',
         '<meta name="author" content="Tanner Dolby">',
         '<meta name="description" content="Some desc">',
         '<meta property="og:type" content="website">',
@@ -344,6 +350,7 @@ describe('metagen unit tests', () => {
         '<meta http-equiv="X-UA-Compatible" content="IE=edge">',
         '<meta name="viewport" content="width=device-width, initial-scale=1">',
         '<title>Some title</title>',
+        '<meta name="title" content="Some title">',
         '<link rel="preconnect" href="https://google.com">',
         '<link rel="dns-prefetch" href="https://example.com">',
         '<meta name="author" content="Tanner Dolby">',
@@ -473,7 +480,7 @@ describe('metagen unit tests', () => {
       expect(metagen({
         title: 'foo',
         minified: true
-      })).toEqual('<meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>foo</title><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:title" content="foo"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="foo">');
+      })).toEqual('<meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>foo</title><meta name="title" content="foo"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:title" content="foo"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="foo">');
     });
   });
 });
