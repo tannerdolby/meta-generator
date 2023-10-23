@@ -220,16 +220,6 @@ function isValidInput(data) {
   return false;
 }
 
-function getInvalidArgs(args) {
-  const invalid = [];
-  for (const arg of args) {
-    if (!SUPPORTED_ARGS.includes(arg)) {
-      invalid.push(arg);
-    }
-  }
-  return invalid;
-}
-
 module.exports = {
   twitterHandle,
   isObject,
@@ -242,5 +232,4 @@ module.exports = {
   getStaticAssets,
   formatObjects,
   isValidInput,
-  getInvalidArgs,
 };

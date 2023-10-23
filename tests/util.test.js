@@ -225,10 +225,4 @@ describe('metagen utility functions', () => {
     expect(isValidInput(null)).toBe(false);
     expect(isValidInput()).toBe(false);
   });
-
-  it('should return array with unsupported arguments', () => {
-    const invalid = getInvalidArgs(['title', 'someField', 'img', 'comments']);
-    expect(invalid.length).toBe(1);
-    expect(invalid).toEqual(['someField']);
-  })
 });
