@@ -67,3 +67,7 @@ which returns array of `<meta>` tags and other document metadata:
   '<script>console.log("hello, world.");</script>',
 ]
 ```
+
+## Examples
+- [11ty](https://github.com/tannerdolby/eleventy-plugin-metagen)
+- [React](https://metagendocs.netlify.app/docs/react/intro)
