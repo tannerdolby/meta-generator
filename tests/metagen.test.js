@@ -37,7 +37,35 @@ describe('metagen unit tests', () => {
       ]);
     });
 
-    it('nunjucks front matter example', () => {
+    it('when defining og_image and twitter_image', () => {
+      expect(metagen({
+        title: 'Foo',
+        comments: true,
+        og_image: 'https://tannerdolby.com/images/some-image.png',
+        og_image_alt: 'og image alt text',
+        twitter_image: 'https://tannerdolby.com/images/another-image.png',
+        twitter_image_alt: 'twitter image alt text'
+      })).toEqual([
+        '<meta charset="utf-8">',
+        '<meta http-equiv="X-UA-Compatible" content="IE=edge">',
+        '<meta name="viewport" content="width=device-width, initial-scale=1">',
+        '<title>Foo</title>',
+        '<meta name="title" content="Foo">',
+        '<!-- Open Graph -->',
+        '<meta property="og:type" content="website">',
+        '<meta property="og:locale" content="en_US">',
+        '<meta property="og:title" content="Foo">',
+        '<meta property="og:image" content="https://tannerdolby.com/images/some-image.png">',
+        '<meta property="og:image:alt" content="og image alt text">',
+        '<!-- Twitter -->',
+        '<meta name="twitter:card" content="summary">',
+        '<meta name="twitter:title" content="Foo">',
+        '<meta name="twitter:image" content="https://tannerdolby.com/images/another-image.png">',
+        '<meta name="twitter:image:alt" content="twitter image alt text">',
+      ]);
+    });
+
+    it('for nunjucks front matter example', () => {
       expect(metagen({
         title: 'Eleventy Plugin Add Meta Tags',
         desc: 'An eleventy shortcode for generating meta tags.',
@@ -84,7 +112,7 @@ describe('metagen unit tests', () => {
       ]);
     });
 
-    it('baseline functionality example', () => {
+    it('for baseline functionality example', () => {
       expect(metagen({
         title: 'Eleventy Plugin Meta Generator',
         desc: 'An eleventy shortcode for generating meta tags.',
@@ -136,7 +164,7 @@ describe('metagen unit tests', () => {
       ]);
     });
 
-    it('liquid example', () => {
+    it('for liquid example', () => {
       expect(metagen({
         title: 'Eleventy Plugin Add Meta Tags',
         desc: 'An eleventy shortcode for generating meta tags.',
@@ -173,7 +201,7 @@ describe('metagen unit tests', () => {
       ]);
     });
 
-    it('advanced usage example', () => {
+    it('for advanced usage example', () => {
       expect(metagen({
         title: 'Eleventy Plugin Meta Generator',
         desc: 'An eleventy shortcode for generating meta tags.',
@@ -284,7 +312,7 @@ describe('metagen unit tests', () => {
       ]);
     });
 
-    it('template data example', () => {
+    it('for template data example', () => {
       expect(metagen({
         title: 'Some Title',
         desc: 'Some desc',
@@ -322,7 +350,7 @@ describe('metagen unit tests', () => {
     });
   });
 
-  describe('plugin arguments', () => {
+  describe('should handle supported arguments', () => {
     it('general', () => {
       expect(metagen({
         title: 'Some title',
