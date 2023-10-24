@@ -49,11 +49,11 @@ module.exports = (data) => {
     'og:locale': data.locale || 'en_US',
     'og:title': data.og_title || data.title,
     'og:description': data.og_desc || data.desc || data.description,
-    'og:image': data.img || data.image,
-    'og:image:alt': data.img_alt || data.image_alt,
-    'og:image:width': data.img_width || data.image_width,
-    'og:image:height': data.img_height || data.image_height,
-    'og:image:type': data.og_img_type || data.og_image_type,
+    'og:image': data.og_image || data.img || data.image,
+    'og:image:alt': data.og_image_alt || data.img_alt || data.image_alt,
+    'og:image:width': data.og_image_width || data.img_width || data.image_width,
+    'og:image:height': data.og_image_height || data.img_height || data.image_height,
+    'og:image:type': data.og_image_type || data.og_img_type,
     'og:image:secure_url': data.og_secure_img_url || data.og_secure_image_url,
   }
 
@@ -65,8 +65,8 @@ module.exports = (data) => {
     'twitter:url': data.url,
     'twitter:title': data.twitter_title || data.title,
     'twitter:description': data.twitter_desc || data.desc || data.description,
-    'twitter:image': data.twitter_image || (data.img || data.image),
-    'twitter:image:alt': data.twitter_image_alt || (data.img_alt || data.image_alt),
+    'twitter:image': data.twitter_image || data.img || data.image,
+    'twitter:image:alt': data.twitter_image_alt || data.img_alt || data.image_alt,
   }
 
   const staticAssets = getStaticAssets({
