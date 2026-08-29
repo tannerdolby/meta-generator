@@ -24,7 +24,7 @@ module.exports = (data) => {
       'http-equiv': 'X-UA-Compatible',
       content: 'IE=edge',
     }),
-    'viewport': 'width=device-width, initial-scale=1',
+    'viewport': data.viewport || 'width=device-width, initial-scale=1',
     'title': data.title && [
       getTag('title', data.title),
       getTag('meta', null, {name: 'title', content: data.title})

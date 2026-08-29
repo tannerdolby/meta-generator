@@ -10,6 +10,7 @@ const PRE_TAGGED = [
 ];
 
 const SUPPORTED_ARGS = [
+  'viewport',
   'title',
   'url',
   'name',
