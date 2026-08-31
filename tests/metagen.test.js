@@ -17,6 +17,19 @@ describe('metagen unit tests', () => {
       ]);
     });
 
+    it('when viewport is provided', () => {
+      expect(metagen({
+        viewport: 'width=device-width,initial-scale=1,viewport-fit=cover',
+      })).toEqual([
+        '<meta charset="utf-8">',
+        '<meta http-equiv="X-UA-Compatible" content="IE=edge">',
+        '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">',
+        '<meta property="og:type" content="website">',
+        '<meta property="og:locale" content="en_US">',
+        '<meta name="twitter:card" content="summary">',
+      ]);
+    });
+
     it('when provided title and comments', () => {
       expect(metagen({
         title: 'foo',
@@ -353,6 +366,7 @@ describe('metagen unit tests', () => {
   describe('should handle supported arguments', () => {
     it('general', () => {
       expect(metagen({
+        viewport: 'width=device-width,initial-scale=1,viewport-fit=cover',
         title: 'Some title',
         url: 'https://tannerdolby.com',
         name: 'Tanner Dolby',
@@ -376,7 +390,7 @@ describe('metagen unit tests', () => {
       })).toEqual([
         '<meta charset="utf-8">',
         '<meta http-equiv="X-UA-Compatible" content="IE=edge">',
-        '<meta name="viewport" content="width=device-width, initial-scale=1">',
+        '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">',
         '<title>Some title</title>',
         '<meta name="title" content="Some title">',
         '<link rel="preconnect" href="https://google.com">',
