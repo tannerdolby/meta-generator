@@ -3,3 +3,7 @@ tests/
 
 # Ignore
 .gitignore
+
+# GitHub
+CONTRIBUTING.md
+FUNDING.yml
