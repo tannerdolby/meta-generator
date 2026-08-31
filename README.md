@@ -10,6 +10,10 @@ npm install meta-generator
 ## What does it do?
 
 ```js
+// ES Modules (ESM)
+import metagen from 'meta-generator';
+
+// CommonJS (CJS)
 const metagen = require('meta-generator');
 
 console.log(metagen({
